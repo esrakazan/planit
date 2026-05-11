@@ -18,6 +18,7 @@ export default function MoviesPage() {
     setMovies(m => [...m, { id: Date.now().toString(), title: input.trim(), genre, watched: false, rating: 0 }])
     setInput('')
   }
+
   const toggle = (id) => setMovies(m => m.map(x => x.id===id ? {...x, watched:!x.watched, rating: x.watched ? 0 : x.rating} : x))
   const remove = (id) => setMovies(m => m.filter(x => x.id!==id))
   const rate   = (id, r) => setMovies(m => m.map(x => x.id===id ? {...x, rating:r} : x))
@@ -33,40 +34,41 @@ export default function MoviesPage() {
         </div>
       </div>
 
-      {/* Alt sekmeler */}
       <div className="flex gap-2 mb-5">
         {[['all','Tümü'],['unwatched','İzlenecek'],['watched','İzlenenler']].map(([key,label]) => (
           <button key={key} onClick={() => setTab(key)}
-            className={`px-3 py-1.5 rounded-xl text-xs font-medium transition-all ${tab===key ? 'bg-violet-100 text-violet-700' : 'bg-white/60 text-gray-500 hover:bg-white/80'}`}>
+            className={`px-3 py-1.5 rounded-xl text-xs font-medium transition-all ${tab===key ? 'bg-[#0e327e] text-white' : 'bg-white/60 text-gray-500 hover:bg-white/80'}`}>
             {label}
           </button>
         ))}
       </div>
 
-      {/* Ekle */}
       <div className="flex gap-2 mb-5 flex-wrap">
         <input value={input} onChange={e => setInput(e.target.value)}
           onKeyDown={e => e.key==='Enter' && add()}
           placeholder="Film adı..."
-          className="flex-1 min-w-0 bg-white/70 border border-white/80 rounded-2xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-violet-200 shadow-sm" />
+          className="flex-1 min-w-0 bg-white/70 border border-white/80 rounded-2xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0e327e]/20 shadow-sm" />
+
         <select value={genre} onChange={e => setGenre(e.target.value)}
-          className="bg-white/70 border border-white/80 rounded-2xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-violet-200 shadow-sm">
+          className="bg-white/70 border border-white/80 rounded-2xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0e327e]/20 shadow-sm">
           {GENRES.map(g => <option key={g}>{g}</option>)}
         </select>
+
         <button onClick={add}
           className="px-4 py-2.5 bg-[#0e327e] text-white rounded-2xl shadow-md hover:opacity-90">
           <Plus size={18} />
         </button>
       </div>
 
-      {/* Liste */}
       {filtered.map(movie => (
         <div key={movie.id}
           className={`flex items-center gap-3 bg-white/70 backdrop-blur-sm rounded-2xl p-4 mb-3 shadow-sm border border-white/80 group transition-opacity ${movie.watched ? 'opacity-75' : ''}`}>
+          
           <button onClick={() => toggle(movie.id)} className="flex-shrink-0">
             {movie.watched
-              ? <Eye size={20} className="text-violet-400" />
-              : <EyeOff size={20} className="text-gray-300 group-hover:text-violet-300 transition-colors" />}
+              ? <Eye size={20} className="text-[#0e327e]" />
+              : <EyeOff size={20} className="text-gray-300 group-hover:text-[#0e327e] transition-colors" />
+            }
           </button>
 
           <div className="flex-1 min-w-0">
@@ -76,7 +78,6 @@ export default function MoviesPage() {
             <span className="text-xs text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full">{movie.genre}</span>
           </div>
 
-          {/* Yıldız puanı */}
           {movie.watched && (
             <div className="flex gap-0.5">
               {[1,2,3,4,5].map(s => (

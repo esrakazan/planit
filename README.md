@@ -1,16 +1,60 @@
-# React + Vite
+# PlanIt 🗓️
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Kişisel görev ve plan takip uygulaması — React + Vite + Tailwind CSS ile geliştirilmiştir.
 
-Currently, two official plugins are available:
+## Özellikler
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- 📋 **Görev Yönetimi** — Ekle, düzenle, sil, tamamlandı olarak işaretle
+- 🎯 **Yıllık Hedefler** — Hedef ekle ve ilerlemeyi takip et
+- 🎬 **Film Listesi** — İzlenecek filmleri listele ve puanla
+- ✈️ **Seyahat Listesi** — Gidilecek şehirleri planla
+- 💾 **Kalıcı Veri** — Tüm veriler `localStorage` ile tarayıcıda saklanır
 
-## React Compiler
+## Kullanılan Teknolojiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **ReactJS** (v19) — UI framework
+- **Vite** — Build tool
+- **Tailwind CSS** (v4) — Stil kütüphanesi
+- **Lucide React** — İkon kütüphanesi
 
-## Expanding the ESLint configuration
+## Proje Yapısı
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```
+src/
+├── Components/     # Tekrar kullanılabilir bileşenler
+│   ├── Sidebar.jsx
+│   ├── TaskCard.jsx
+│   └── TaskModal.jsx
+├── Pages/          # Sayfa bileşenleri
+│   ├── HomePage.jsx
+│   ├── GoalsPage.jsx
+│   ├── MoviesPage.jsx
+│   └── TravelPage.jsx
+├── Interfaces/     # Veri modelleri ve yardımcı fonksiyonlar
+│   └── index.js
+├── App.jsx
+└── main.jsx
+```
+
+## CRUD İşlemleri
+
+| İşlem | Açıklama |
+|-------|----------|
+| ➕ Ekle | Görev, hedef, film veya şehir ekle |
+| 📋 Listele | Filtreleme ve arama ile listele |
+| ✏️ Güncelle | Mevcut kayıtı düzenle |
+| 🗑️ Sil | Kaydı kalıcı olarak sil |
+
+## Kurulum
+
+```bash
+npm install
+npm run dev
+```
+
+## Build & Deploy
+
+```bash
+npm run build
+# dist/ klasörü Netlify'a sürükle-bırak ile yayınla
+```

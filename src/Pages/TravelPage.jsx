@@ -18,6 +18,7 @@ export default function TravelPage() {
     setCities(c => [...c, { id: Date.now().toString(), name: name.trim(), country: country.trim(), continent, visited: false, dream: false }])
     setName(''); setCountry('')
   }
+
   const toggle = (id) => setCities(c => c.map(x => x.id===id ? {...x, visited:!x.visited} : x))
   const remove = (id) => setCities(c => c.filter(x => x.id!==id))
 
@@ -32,12 +33,11 @@ export default function TravelPage() {
         </div>
       </div>
 
-      {/* Harita benzeri stat */}
       <div className="grid grid-cols-3 gap-3 mb-5">
         {[
           { label:'Toplam', value: cities.length, emoji:'🌍' },
-          { label:'Gezilen', value: visited,        emoji:'✅' },
-          { label:'Hedef',  value: cities.length - visited, emoji:'🎯' },
+          { label:'Gezilen', value: visited, emoji:'✅' },
+          { label:'Hedef', value: cities.length - visited, emoji:'🎯' },
         ].map(s => (
           <div key={s.label} className="bg-white/70 backdrop-blur-sm rounded-2xl p-3 text-center shadow-sm border border-white/80">
             <div className="text-2xl mb-1">{s.emoji}</div>
@@ -47,7 +47,6 @@ export default function TravelPage() {
         ))}
       </div>
 
-      {/* Ekle */}
       <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-4 mb-5 shadow-sm border border-white/80">
         <p className="text-xs font-medium text-gray-500 mb-3">Yeni Şehir Ekle</p>
         <div className="flex gap-2 flex-wrap">
@@ -68,17 +67,17 @@ export default function TravelPage() {
         </div>
       </div>
 
-      {/* Liste */}
       {cities.map(city => (
         <div key={city.id}
           className={`flex items-center gap-3 bg-white/70 backdrop-blur-sm rounded-2xl p-4 mb-3 shadow-sm border border-white/80 group ${city.visited ? 'opacity-70' : ''}`}>
+          
           <button onClick={() => toggle(city.id)} className="flex-shrink-0">
             {city.visited
-              ? <CheckCircle2 size={22} className="text-violet-400" />
-              : <Circle size={22} className="text-gray-300 group-hover:text-violet-300 transition-colors" />}
+              ? <CheckCircle2 size={22} className="text-[#0e327e]" />
+              : <Circle size={22} className="text-gray-300 group-hover:text-[#0e327e] transition-colors" />}
           </button>
 
-          <MapPin size={16} className={city.visited ? 'text-violet-300' : 'text-rose-300'} />
+          <MapPin size={16} className={city.visited ? 'text-[#0e327e]' : 'text-[#0e327e]'} />
 
           <div className="flex-1">
             <p className={`text-sm font-semibold ${city.visited ? 'line-through text-gray-400' : 'text-gray-800'}`}>
@@ -87,7 +86,11 @@ export default function TravelPage() {
             <p className="text-xs text-gray-400">{city.country} {city.continent && `• ${city.continent}`}</p>
           </div>
 
-          {city.visited && <span className="text-xs bg-violet-100 text-violet-600 px-2 py-0.5 rounded-full font-medium">Gezildi ✓</span>}
+          {city.visited && (
+            <span className="text-xs bg-[#0e327e] text-white px-2 py-0.5 rounded-full font-medium">
+              Gezildi ✓
+            </span>
+          )}
 
           <button onClick={() => remove(city.id)}
             className="opacity-0 group-hover:opacity-100 p-1.5 rounded-lg hover:bg-rose-50 text-gray-300 hover:text-rose-400 transition-all">
