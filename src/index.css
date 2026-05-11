@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+* {
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  box-sizing: border-box;
+}
+
+input, select, textarea {
+  color: #1e3a5f !important;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(14,50,126,0.15); border-radius: 99px; }
